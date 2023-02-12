@@ -37,6 +37,11 @@ mongoose.connect(process.env.MONGO_URL, {
 //   console.log(`${err} did not Connect`);
 // });
 
+
+
+// CRUD opreatiomns on the database
+
+// GET Routes
 app.get("/", async (req, res) => {
   const blogposts = await BlogPost.find({});
   console.log(blogposts);
@@ -77,11 +82,14 @@ app.get("/user/:id", (req, res) => {
   // res.sendFile(path.resolve(__dirname, "pages/contact.html"));
 });
 
-// CRUD opreatiomns on the database
+
 app.get("/posts/new", (req, res) => {
   res.render("create");
 });
 
+
+
+// POST Routes
 app.post("/posts/store/", (req, res) => {
   let image = req.files.image;
   image.mv(path.resolve(__dirname, "public/img", image.name), async (error) => {
@@ -93,3 +101,11 @@ app.post("/posts/store/", (req, res) => {
     );
   });
 });
+
+// UPDATE ROUTES
+
+app.get("/update", async (req, res) => {
+  const updated = await BlogPost.findByIdAndUpdate("63e2d3d26cbaa46898dab0da", { datePosted: new Date() });
+
+  res.end(JSON.stringify(updated))
+})
