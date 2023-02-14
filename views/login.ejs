@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>D_Licence Buddy</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <!-- Navigation-->
+    <%- include('layouts/navbar'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('assets/img/home-bg.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>Login</h1>
+              <span class="subheading">Autheticate Beep Boop! 🤖</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="card" id="card">
+      <div class="front">
+        <p class="login_word">LOG IN</p>
+        <img
+          src="https://drive.google.com/uc?export=view&id=1K5_tAX_taOQQ0wwmFx3P--V05kjvg4cu"
+          alt="person picture"
+        />
+        <form method="post" action="">
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            class="f1"
+            maxlength="10"
+            required
+            autocomplete="off"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            class="f1"
+            maxlength="10"
+            required
+            autocomplete="off"
+          />
+          <button class="f1" name="login" value="clicked">Log in</button>
+          <p>Not registered? <span onclick="flip()">Create an account</span></p>
+        </form>
+      </div>
+      <div class="back">
+        <p class="signup_word">SIGN UP</p>
+        <form method="post" action="" id="signUp">
+          <input
+            type="text"
+            name="first_name"
+            placeholder="first name"
+            class="f1"
+            maxlength="10"
+            required
+            style="margin-top: 35px"
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            name="last_name"
+            placeholder="last name"
+            class="f1"
+            maxlength="10"
+            required
+            autocomplete="off"
+          />
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            class="f1"
+            maxlength="10"
+            required
+            autocomplete="off"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="e-mail"
+            class="f1"
+            maxlength="30"
+            required
+            autocomplete="off"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            class="f1"
+            maxlength="10"
+            required
+            autocomplete="off"
+          />
+          <button class="f1" name="signup" value="clicked">Sign up</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer-->
+    <%- include('layouts/footer'); -%> <%- include('layouts/scripts'); -%>
+  </body>
+</html>

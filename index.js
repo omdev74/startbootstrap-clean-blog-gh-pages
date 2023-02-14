@@ -21,34 +21,31 @@ app.use(express.static("public"));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(fileUpload());
+const validateMiddleware = require("./middleware/validateMiddleware");
 
-// Mongo Setup
+// Env Setup
 dotenv.config();
 
+// controllers
+const newPostController = require("./controllers/newPost")
+const homeController = require('./controllers/home')
+const storePostController = require('./controllers/storePost')
+const getPostController = require('./controllers/getPost');
+const storeUserController = require("./controllers/storeUser");
+
+
 mongoose.connect(process.env.MONGO_URL, {
-  //   .connect("mongodb+srv://omdev:omdev123@cluster0.bttorco.mongodb.net/test", {
+
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-// .then((result) => {
-//   app.listen(PORT, () => console.log(`SERVER Port : ${PORT}`));
-// })
-// .catch((err) => {
-//   console.log(`${err} did not Connect`);
-// });
 
 
 
-// CRUD opreatiomns on the database
+// CRUD opreations on the database
 
 // GET Routes
-app.get("/", async (req, res) => {
-  const blogposts = await BlogPost.find({});
-  console.log(blogposts);
-  res.render("index", {
-    blogposts, // assigning data to blogposts variable
-  });
-});
+app.get("/", homeController);
 
 app.get("/about", (req, res) => {
   res.render("about");
@@ -59,11 +56,7 @@ app.get("/post", (req, res) => {
   // res.sendFile(path.resolve(__dirname, "pages/post.html"));
 });
 
-app.get("/post/:id", async (req, res) => {
-  const blogpost = await BlogPost.findById(req.params.id);
-  console.log(blogpost);
-  res.render("post", { blogpost });
-});
+app.get("/post/:id", getPostController);
 
 app.get("/contact", (req, res) => {
   res.render("contact");
@@ -83,24 +76,16 @@ app.get("/user/:id", (req, res) => {
 });
 
 
-app.get("/posts/new", (req, res) => {
-  res.render("create");
-});
+app.get("/posts/new", newPostController);
+
+app.get("/login", (req, res) => {
+  res.render("login")
+})
 
 
 
 // POST Routes
-app.post("/posts/store/", (req, res) => {
-  let image = req.files.image;
-  image.mv(path.resolve(__dirname, "public/img", image.name), async (error) => {
-    await BlogPost.create(
-      { ...req.body, image: "/img/" + image.name },
-      (error, blogpost) => {
-        res.redirect("/");
-      }
-    );
-  });
-});
+app.post("/posts/store/", storePostController);
 
 // UPDATE ROUTES
 
